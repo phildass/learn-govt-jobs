@@ -1,0 +1,32 @@
+{
+  "name": "learn-govt-jobs",
+  "version": "1.0.0",
+  "description": "Government Jobs Portal - Information-centric paid membership platform for government job notifications",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd backend && npm run dev",
+    "client:dev": "cd frontend && npm run dev",
+    "server:build": "cd backend && npm run build",
+    "client:build": "cd frontend && npm run build",
+    "build": "npm run server:build && npm run client:build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint"
+  },
+  "keywords": [
+    "government-jobs",
+    "job-portal",
+    "notifications",
+    "exam-preparation",
+    "ai-powered"
+  ],
+  "author": "iiskills-cloud",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
