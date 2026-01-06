@@ -29,14 +29,25 @@ exports.createOrder = async (req, res) => {
     });
 
     // TODO: Create order with Razorpay/Stripe
-    // For now, return mock data
-    res.json({
-      success: true,
-      message: 'Payment order created',
-      data: {
-        payment,
-        orderId: 'mock_order_' + payment.id
-      }
+    // Development mode: Return mock data
+    if (process.env.NODE_ENV !== 'production') {
+      return res.json({
+        success: true,
+        message: 'Payment order created (DEVELOPMENT MODE)',
+        data: {
+          payment,
+          orderId: 'mock_order_' + payment.id
+        }
+      });
+    }
+
+    // Production: Implement actual payment gateway integration
+    throw new Error('Payment gateway integration required for production');
+  } catch (error) {
+    logger.error('Create order error:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Failed to create payment order'
     });
   } catch (error) {
     logger.error('Create order error:', error);

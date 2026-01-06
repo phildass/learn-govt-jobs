@@ -25,7 +25,8 @@ class ScrapingService {
     try {
       const response = await axios.get(url, {
         headers: {
-          'User-Agent': process.env.SCRAPING_USER_AGENT
+          'User-Agent': process.env.SCRAPING_USER_AGENT || 
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         },
         timeout: parseInt(process.env.SCRAPING_TIMEOUT_MS) || 30000
       });
@@ -59,7 +60,8 @@ class ScrapingService {
       });
 
       const page = await browser.newPage();
-      await page.setUserAgent(process.env.SCRAPING_USER_AGENT);
+      await page.setUserAgent(process.env.SCRAPING_USER_AGENT || 
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36');
       await page.goto(url, { 
         waitUntil: 'networkidle2',
         timeout: parseInt(process.env.SCRAPING_TIMEOUT_MS) || 30000

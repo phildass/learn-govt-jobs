@@ -112,7 +112,7 @@ const User = sequelize.define('User', {
 // Hash password before save
 User.beforeSave(async (user) => {
   if (user.changed('password') && user.password) {
-    const rounds = parseInt(process.env.BCRYPT_ROUNDS) || 10;
+    const rounds = parseInt(process.env.BCRYPT_ROUNDS) || 12;
     user.password = await bcrypt.hash(user.password, rounds);
   }
 });

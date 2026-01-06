@@ -44,7 +44,7 @@ exports.register = async (req, res) => {
     });
 
     // TODO: Send verification email and OTP
-    logger.info(`User registered: ${email}, OTP: ${otp}`);
+    logger.info(`User registered: ${email}, OTP sent for verification`);
 
     const token = generateToken(user.id);
 
@@ -207,7 +207,7 @@ exports.resendOTP = async (req, res) => {
     });
 
     // TODO: Send OTP via SMS
-    logger.info(`OTP resent for ${email}: ${otp}`);
+    logger.info(`OTP resent for user: ${email}`);
 
     res.json({
       success: true,

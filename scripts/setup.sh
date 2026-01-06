@@ -15,8 +15,20 @@ echo "Checking prerequisites..."
 
 command -v node >/dev/null 2>&1 || { echo "Error: Node.js is required but not installed. Please install Node.js 18+"; exit 1; }
 command -v npm >/dev/null 2>&1 || { echo "Error: npm is required but not installed."; exit 1; }
-command -v psql >/dev/null 2>&1 || { echo "Warning: PostgreSQL not found. Please install PostgreSQL 14+"; }
-command -v redis-cli >/dev/null 2>&1 || { echo "Warning: Redis not found. Please install Redis 6+"; }
+
+# Check for PostgreSQL or Docker
+if ! command -v psql >/dev/null 2>&1 && ! command -v docker >/dev/null 2>&1; then
+    echo "Error: PostgreSQL or Docker is required but neither is installed."
+    echo "Please install PostgreSQL 14+ or Docker to use Docker Compose."
+    exit 1
+fi
+
+# Check for Redis or Docker
+if ! command -v redis-cli >/dev/null 2>&1 && ! command -v docker >/dev/null 2>&1; then
+    echo "Error: Redis or Docker is required but neither is installed."
+    echo "Please install Redis 6+ or Docker to use Docker Compose."
+    exit 1
+fi
 
 NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
 if [ "$NODE_VERSION" -lt 18 ]; then

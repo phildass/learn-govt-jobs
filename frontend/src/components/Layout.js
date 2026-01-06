@@ -57,7 +57,8 @@ export default function Layout({ children }) {
       >
         <Container maxWidth="lg">
           <Typography variant="body2" color="text.secondary" align="center">
-            {process.env.NEXT_PUBLIC_DISCLAIMER}
+            {process.env.NEXT_PUBLIC_DISCLAIMER || 
+              'This is a private educational platform and is NOT affiliated with any government organization.'}
           </Typography>
           <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 1 }}>
             © {new Date().getFullYear()} Learn Govt Jobs. All rights reserved.
